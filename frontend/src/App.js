@@ -1,13 +1,26 @@
 import "./App.css";
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Homescreen from "./Screens/Homescreen";
+import Productscreen from "./Screens/Productscreen";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Welcome to DummySHOP</p>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Container>
+          <main className="py-3">
+            <Route path="/" component={Homescreen} exact />
+            <Route path="/product/:id" component={Productscreen} exact />
+          </main>
+        </Container>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
