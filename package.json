@@ -2,9 +2,12 @@
   "name": "ecomm-application",
   "version": "1.0.0",
   "description": "Ecommerce Application",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js ",
+    "dev": "nodemon run server/index.js",
+    "client": "npm start --prefix frontend",
+    "test": "concurrently \"npm run dev\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/gaurav-27ydv/ecomm-application/issues"
   },
-  "homepage": "https://github.com/gaurav-27ydv/ecomm-application#readme"
+  "homepage": "https://github.com/gaurav-27ydv/ecomm-application#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "nodemon": "^2.0.12"
+  }
 }
