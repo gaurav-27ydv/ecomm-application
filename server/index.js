@@ -19,7 +19,8 @@ app.get("/", (req, res) => {
   res.status(200).redirect("/api/products/");
 });
 
-app.use("/api/products/", products);
+//Requests with below string are parsed via the router
+app.use("/api/products", products);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>

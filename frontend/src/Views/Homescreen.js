@@ -1,16 +1,23 @@
+//Import React Hook components
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import axios from "axios";
 import Product from "../Components/Product";
 
 const Homescreen = () => {
+  //Set up React Hook
   const [products, setProducts] = useState([]);
+  //Fetch products from backend
   useEffect(() => {
+    let isMounted = true;
     const fetchProducts = async () => {
       const data = await axios.get("/api/products/").then((res) => res.data);
-      setProducts(data, []);
+      if (isMounted) setProducts(data, []);
     };
     fetchProducts();
+    return () => {
+      isMounted = false;
+    };
   });
   return (
     <div>

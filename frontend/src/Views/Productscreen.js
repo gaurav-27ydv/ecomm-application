@@ -1,3 +1,4 @@
+//Import React Hook Components
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -10,22 +11,29 @@ import {
   Button,
   ListGroupItem,
 } from "react-bootstrap";
+//Import Components
 import Rating from "../Components/Rating";
 
 const Productscreen = ({ match }) => {
+  //Set up React Hooks
   const [product, setProduct] = useState([]);
+  //Fetch product info from backend
   useEffect(() => {
+    let isMounted = true;
     const fetchProduct = async () => {
       const data = await axios
         .get(`/api/products/${match.params.id}`)
         .then((res) => res.data);
-      setProduct(data, []);
+      if (isMounted) setProduct(data, []);
     };
     fetchProduct();
-  });
+    return () => {
+      isMounted = false;
+    };
+  }, [match.params.id]);
   return (
     <div>
-      <Link className="btn btn-md btn-outline-dark m-1" to="/">
+      <Link className="btn btn-outline-dark" to="/">
         Back
       </Link>
       <Row>
@@ -58,11 +66,7 @@ const Productscreen = ({ match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Button
-                    classnName="btn btn-outline-dark"
-                    type="button"
-                    disabled={product.countInStock <= 0}
-                  >
+                  <Button type="button" disabled={product.countInStock === 0}>
                     Buy Now
                   </Button>
                 </Row>

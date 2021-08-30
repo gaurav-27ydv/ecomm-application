@@ -1,10 +1,14 @@
+//Import style and elements
 import "./App.css";
 import { Container } from "react-bootstrap";
+//Import Router
 import { BrowserRouter as Router, Route } from "react-router-dom";
+//Import Components
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import Homescreen from "./Screens/Homescreen";
-import Productscreen from "./Screens/Productscreen";
+//Import Views
+import Homescreen from "./Views/Homescreen";
+import Productscreen from "./Views/Productscreen";
 
 const App = () => {
   return (
