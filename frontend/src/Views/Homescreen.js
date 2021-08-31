@@ -1,41 +1,43 @@
 //Import React Hook components
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "../Components/Product";
+import Message from "../Components/Message.js";
+import Loader from "../Components/Loader.js";
+import { listProducts } from "../Actions/productAction.js";
 
 const Homescreen = () => {
-  //Set up React Hook
-  const [products, setProducts] = useState([]);
-  //Fetch products from backend
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
   useEffect(() => {
-    let isMounted = true;
-    const fetchProducts = async () => {
-      const data = await axios.get("/api/products/").then((res) => res.data);
-      if (isMounted) setProducts(data, []);
-    };
-    fetchProducts();
-    return () => {
-      isMounted = false;
-    };
-  });
+    dispatch(listProducts());
+  }, [dispatch]);
+
   return (
     <div>
       <h1>Latest Products</h1>
-      <Row>
-        {products.map((product) => (
-          <Col
-            className="d-flex align-items-stretch"
-            key={product._id}
-            sm={12}
-            md={6}
-            lg={4}
-            xl={3}
-          >
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
+      {loading ? (
+        <Loader></Loader>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          {products.map((product) => (
+            <Col
+              className="d-flex align-items-stretch"
+              key={product._id}
+              sm={12}
+              md={6}
+              lg={4}
+              xl={3}
+            >
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   );
 };
