@@ -8,6 +8,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 //Import Views
 import Homescreen from "./Views/Homescreen";
+import Cartscreen from "./Views/Cartscreen";
 import Productscreen from "./Views/Productscreen";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <main className="p-3">
             <Route path="/" component={Homescreen} exact />
             <Route path="/product/:id" component={Productscreen} exact />
+            <Route path="/cart/:id?" component={Cartscreen} exact />
           </main>
         </Container>
         <Footer />
