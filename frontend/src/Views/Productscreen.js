@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 //Import Components
 import Rating from "../Components/Rating";
-import { listProductDetails } from "../Actions/productAction";
+import { listProductDetails } from "../Actions/productActions";
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
 

@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Homescreen from "./Views/Homescreen";
 import Cartscreen from "./Views/Cartscreen";
 import Productscreen from "./Views/Productscreen";
+import Loginscreen from "./Views/Loginscreen";
 
 const App = () => {
   return (
@@ -18,9 +19,10 @@ const App = () => {
         <Header />
         <Container>
           <main className="p-3">
-            <Route path="/" component={Homescreen} exact />
+            <Route path="/login" component={Loginscreen} exact />
             <Route path="/product/:id" component={Productscreen} exact />
             <Route path="/cart/:id?" component={Cartscreen} exact />
+            <Route path="/" component={Homescreen} exact />
           </main>
         </Container>
         <Footer />

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -14,16 +15,12 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {/* Used ms-auto instead of ml-auto */}
             <Nav className="ms-auto">
-              <LinkContainer to="/cart">
-                <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i> CART
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/login">
-                <Nav.Link>
-                  <i className="fas fa-user"></i> Log-in
-                </Nav.Link>
-              </LinkContainer>
+              <NavLink className="nav-link" to="/cart">
+                <i className="fas fa-shopping-cart"></i> CART
+              </NavLink>
+              <NavLink className="nav-link" to="/login">
+                <i className="fas fa-user"></i> Log-in
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
