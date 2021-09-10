@@ -10,6 +10,9 @@ const getProduct = asyncHandler(async (req, res) => {
   res.status(200).send(products).end();
 });
 
+//@desc   Fetch product by id
+//@route  Get /api/products/:id
+//@access Public
 const getProductById = asyncHandler(async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);

@@ -1,8 +1,7 @@
-//Required Imports
 import express from "express";
 import dotenv from "dotenv";
-import { errorHandler } from "./middleware/errorMiddleware.js";
 import cors from "cors";
+import errorHandler from "./middleware/errorMiddleware.js";
 import productRoutes from "./routes/api/products.js";
 import userRoutes from "./routes/api/users.js";
 
@@ -12,21 +11,19 @@ const app = express();
 //Load environment variables
 dotenv.config();
 
-//Enable json parsing from URL and CORS
-app.use(express.json());
-app.use(cors());
-
-//GET request for HOME
 app.get("/", (req, res) => {
   res.status(200).send("API is up and running.");
 });
 
-//Requests pertaining to user profile is parsed via user routes
+//User routes
 app.use("/api/users", userRoutes);
 
-//Requests pertaining to products are parsed via product routes
+//Product routes
 app.use("/api/products", productRoutes);
 
+//Middlewares
+app.use(express.json());
+app.use(cors());
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
