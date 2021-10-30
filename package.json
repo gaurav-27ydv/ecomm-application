@@ -32,7 +32,7 @@
     "mongoose": "^5.13.8"
   },
   "devDependencies": {
-    "concurrently": "^6.2.1",
+    "concurrently": "^6.3.0",
     "nodemon": "^2.0.12"
   }
 }
